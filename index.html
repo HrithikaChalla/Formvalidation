@@ -3,108 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <title>Registration Form</title>
+
     <style>
-* {
-    box-sizing: border-box;
-}
+        * {
+            box-sizing: border-box;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
-}
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
 
-.form-box {
-    width: 420px;
-    margin: 50px auto;
-    background: white;
-    padding: 25px;
-    border-radius: 6px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
+        /* Center ONLY the form */
+        .form-box {
+            width: 420px;
+            margin: 60px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-label {
-    font-weight: bold;
-}
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0 2px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
 
-input[type="text"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin: 6px 0 2px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
+        .error {
+            color: red;
+            font-size: 13px;
+            margin-bottom: 8px;
+            display: block;
+        }
 
-.error {
-    color: red;
-    font-size: 13px;
-    margin-bottom: 8px;
-    display: block;
-}
+        .success {
+            color: green;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
 
-.gender {
-    margin: 6px 0;
-}
+        .gender {
+            margin: 6px 0;
+        }
 
-button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+        /* Register button styling */
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-<h2>Registration Form</h2>
+<div class="form-box">
+    <h2>Registration Form</h2>
 
-<form onsubmit="return validate()">
+    <div id="successMsg" class="success"></div>
 
-    Name:<br>
-    <input type="text" id="name"><br>
-    <span id="nameError" style="color:red"></span><br>
+    <form onsubmit="return validate()">
 
-    Email:<br>
-    <input type="text" id="email"><br>
-    <span id="emailError" style="color:red"></span><br>
+        Name:
+        <input type="text" id="name">
+        <span id="nameError" class="error"></span>
 
-    Password:<br>
-    <input type="password" id="password"><br>
-    <span id="passwordError" style="color:red"></span><br>
+        Email:
+        <input type="text" id="email">
+        <span id="emailError" class="error"></span>
 
-    Confirm Password:<br>
-    <input type="password" id="confirm"><br>
-    <span id="confirmError" style="color:red"></span><br>
+        Password:
+        <input type="password" id="password">
+        <span id="passwordError" class="error"></span>
 
-    Mobile Number:<br>
-    <input type="text" id="mobile"><br>
-    <span id="mobileError" style="color:red"></span><br>
+        Confirm Password:
+        <input type="password" id="confirm">
+        <span id="confirmError" class="error"></span>
 
-    Gender:<br>
-    <input type="radio" name="gender"> Male
-    <input type="radio" name="gender"> Female<br>
-    <span id="genderError" style="color:red"></span><br>
+        Mobile Number:
+        <input type="text" id="mobile">
+        <span id="mobileError" class="error"></span>
 
-    <input type="checkbox" id="terms"> I accept Terms & Conditions<br>
-    <span id="termsError" style="color:red"></span><br>
+        Gender:
+        <div class="gender">
+            <input type="radio" name="gender"> Male
+            <input type="radio" name="gender"> Female
+        </div>
+        <span id="genderError" class="error"></span>
 
-    <input type="submit" value="Register">
+        <input type="checkbox" id="terms"> I accept Terms & Conditions
+        <span id="termsError" class="error"></span>
 
-</form>
+        <input type="submit" value="Register">
+
+    </form>
 </div>
+
 <script>
 function validate() {
-    var valid = true;
+    let valid = true;
+
+    document.getElementById("successMsg").innerHTML = "";
+
     document.getElementById("nameError").innerHTML = "";
     document.getElementById("emailError").innerHTML = "";
     document.getElementById("passwordError").innerHTML = "";
@@ -113,13 +133,13 @@ function validate() {
     document.getElementById("genderError").innerHTML = "";
     document.getElementById("termsError").innerHTML = "";
 
-    var name = document.getElementById("name").value;
-    var email = document.getElementById("email").value;
-    var password = document.getElementById("password").value;
-    var confirm = document.getElementById("confirm").value;
-    var mobile = document.getElementById("mobile").value;
-    var gender = document.getElementsByName("gender");
-    var terms = document.getElementById("terms").checked;
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let confirm = document.getElementById("confirm").value;
+    let mobile = document.getElementById("mobile").value;
+    let gender = document.getElementsByName("gender");
+    let terms = document.getElementById("terms").checked;
 
     if (name == "") {
         document.getElementById("nameError").innerHTML = "Name is required";
@@ -156,8 +176,14 @@ function validate() {
         valid = false;
     }
 
-    return valid;
+    if (valid) {
+        document.getElementById("successMsg").innerHTML =
+            "Registration successful!";
+    }
+
+    return false; // prevent page refresh for demo
 }
 </script>
+
 </body>
 </html>
