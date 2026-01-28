@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+</head>
+<body>
+
+<h2>Registration Form</h2>
+
+<form onsubmit="return validate()">
+
+    Name:<br>
+    <input type="text" id="name"><br>
+    <span id="nameError" style="color:red"></span><br>
+
+    Email:<br>
+    <input type="text" id="email"><br>
+    <span id="emailError" style="color:red"></span><br>
+
+    Password:<br>
+    <input type="password" id="password"><br>
+    <span id="passwordError" style="color:red"></span><br>
+
+    Confirm Password:<br>
+    <input type="password" id="confirm"><br>
+    <span id="confirmError" style="color:red"></span><br>
+
+    Mobile Number:<br>
+    <input type="text" id="mobile"><br>
+    <span id="mobileError" style="color:red"></span><br>
+
+    Gender:<br>
+    <input type="radio" name="gender"> Male
+    <input type="radio" name="gender"> Female<br>
+    <span id="genderError" style="color:red"></span><br>
+
+    <input type="checkbox" id="terms"> I accept Terms & Conditions<br>
+    <span id="termsError" style="color:red"></span><br>
+
+    <input type="submit" value="Register">
+
+</form>
+</div>
+<script>
+function validate() {
+    var valid = true;
+    document.getElementById("nameError").innerHTML = "";
+    document.getElementById("emailError").innerHTML = "";
+    document.getElementById("passwordError").innerHTML = "";
+    document.getElementById("confirmError").innerHTML = "";
+    document.getElementById("mobileError").innerHTML = "";
+    document.getElementById("genderError").innerHTML = "";
+    document.getElementById("termsError").innerHTML = "";
+
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    var confirm = document.getElementById("confirm").value;
+    var mobile = document.getElementById("mobile").value;
+    var gender = document.getElementsByName("gender");
+    var terms = document.getElementById("terms").checked;
+
+    if (name == "") {
+        document.getElementById("nameError").innerHTML = "Name is required";
+        valid = false;
+    }
+
+    if (email == "" || email.indexOf("@") == -1) {
+        document.getElementById("emailError").innerHTML = "Invalid email";
+        valid = false;
+    }
+
+    if (password.length < 8) {
+        document.getElementById("passwordError").innerHTML = "Minimum 8 characters";
+        valid = false;
+    }
+
+    if (password != confirm) {
+        document.getElementById("confirmError").innerHTML = "Passwords do not match";
+        valid = false;
+    }
+
+    if (mobile.length != 10) {
+        document.getElementById("mobileError").innerHTML = "Enter 10 digit number";
+        valid = false;
+    }
+
+    if (!gender[0].checked && !gender[1].checked) {
+        document.getElementById("genderError").innerHTML = "Select gender";
+        valid = false;
+    }
+
+    if (!terms) {
+        document.getElementById("termsError").innerHTML = "Accept terms";
+        valid = false;
+    }
+
+    return valid;
+}
+</script>
+</body>
+</html>
